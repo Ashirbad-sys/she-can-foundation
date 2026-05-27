@@ -1,0 +1,269 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="She Can Foundation — Contact us and make your voice heard." />
+  <title>Contact Us | She Can Foundation</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <!--
+    STEP 2 — CSS Styling added
+    ════════════════════════════
+    No external CSS or JavaScript yet.
+    We're building the skeleton: every section,
+    tag, and attribute in the right place.
+    Styling comes in Step 2.
+  -->
+</head>
+<body>
+
+  <!-- ╔══════════════════════════════════════╗
+       ║  1. NAVBAR / HEADER                  ║
+       ╚══════════════════════════════════════╝
+       <header>  — landmark for the top of the page
+       <nav>     — marks this as site navigation
+       <ul>/<li> — links are a list, semantically
+  -->
+  <header>
+    <nav class="navbar">
+      <!-- Brand / Logo -->
+      <a href="index.html" class="brand">
+        <img src="assets/images/logo.png" alt="She Can Foundation Logo" class="brand-logo" />
+        She Can Foundation
+      </a>
+
+      <!-- Navigation links -->
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#programs">Programs</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+
+      <a href="#contact" class="nav-cta">Get in Touch</a>
+    </nav>
+  </header>
+
+
+  <!-- ╔══════════════════════════════════════╗
+       ║  2. HERO SECTION                     ║
+       ╚══════════════════════════════════════╝
+       <section> — a standalone thematic block
+       <h1>      — only ONE h1 per page (main heading)
+  -->
+  <section id="hero" class="hero">
+    <span class="hero-badge">💜 Empowering Women Since 2018</span>
+
+    <h1 class="hero-title">We Believe Every Woman<br /><em>Can Change the World</em></h1>
+
+    <p class="hero-subtitle">
+      She Can Foundation is committed to creating opportunities,
+      amplifying voices, and building a more equitable future
+      for women everywhere.
+    </p>
+
+    <!-- Quick stats -->
+    <dl class="hero-stats">
+      <div class="stat">
+        <dd class="stat-number">5,000+</dd>
+        <dt class="stat-label">Women Empowered</dt>
+      </div>
+      <div class="stat">
+        <dd class="stat-number">120+</dd>
+        <dt class="stat-label">Programs Run</dt>
+      </div>
+      <div class="stat">
+        <dd class="stat-number">32</dd>
+        <dt class="stat-label">Cities Reached</dt>
+      </div>
+    </dl>
+  </section>
+
+
+  <!-- ╔══════════════════════════════════════╗
+       ║  3. CONTACT SECTION                  ║
+       ╚══════════════════════════════════════╝
+       Two columns side-by-side (styled in Step 2):
+         LEFT  — contact info (address, email, phone)
+         RIGHT — the contact form
+  -->
+  <main id="contact" class="contact-section">
+
+    <!-- ── LEFT: Contact Info ── -->
+    <aside class="info-panel">
+      <h2>Get in <span>Touch</span></h2>
+      <p>
+        Whether you want to volunteer, partner with us, or simply learn more
+        about our work — we'd love to hear from you.
+      </p>
+
+      <address class="contact-details">
+        <div class="contact-item">
+          <span class="c-icon">📍</span>
+          <div>
+            <strong>Address</strong>
+            <span>12 Empower Lane, Bhubaneswar, Odisha 751001</span>
+          </div>
+        </div>
+        <div class="contact-item">
+          <span class="c-icon">📧</span>
+          <div>
+            <strong>Email</strong>
+            <a href="mailto:hello@shecanicanfoundation.org">hello@shecanicanfoundation.org</a>
+          </div>
+        </div>
+        <div class="contact-item">
+          <span class="c-icon">📞</span>
+          <div>
+            <strong>Phone</strong>
+            <a href="tel:+919876543210">+91 98765 43210</a>
+          </div>
+        </div>
+        <div class="contact-item">
+          <span class="c-icon">🕐</span>
+          <div>
+            <strong>Working Hours</strong>
+            <span>Mon – Sat, 9 AM – 6 PM IST</span>
+          </div>
+        </div>
+      </address>
+    </aside>
+
+    <!-- ── RIGHT: Contact Form ── -->
+    <section class="form-section" aria-labelledby="formTitle">
+      <div class="form-card">
+        <div class="form-header">
+          <h3 id="formTitle">Send Us a Message</h3>
+          <p>We typically respond within 24 hours ✨</p>
+        </div>
+
+        <form id="contactForm" novalidate>
+
+          <!-- Field 1: Full Name -->
+          <div class="form-group">
+            <label for="fullName">Full Name <span class="required">*</span></label>
+            <input
+              type="text"
+              id="fullName"
+              name="full_name"
+              placeholder="e.g. Priya Sharma"
+              autocomplete="name"
+              required
+              aria-required="true"
+              aria-describedby="fullNameError"
+            />
+            <span id="fullNameError" class="field-error" role="alert" aria-live="polite"></span>
+          </div>
+
+          <!-- Field 2: Email -->
+          <div class="form-group">
+            <label for="email">Email Address <span class="required">*</span></label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="e.g. priya@email.com"
+              autocomplete="email"
+              required
+              aria-required="true"
+              aria-describedby="emailError"
+            />
+            <span id="emailError" class="field-error" role="alert" aria-live="polite"></span>
+          </div>
+
+          <!-- Field 3: Message -->
+          <div class="form-group">
+            <label for="message">Your Message <span class="required">*</span></label>
+            <textarea
+              id="message"
+              name="message"
+              rows="5"
+              placeholder="Tell us how we can help or collaborate…"
+              required
+              aria-required="true"
+              aria-describedby="messageError"
+            ></textarea>
+            <span id="messageError" class="field-error" role="alert" aria-live="polite"></span>
+          </div>
+
+          <button type="submit" class="btn-submit" id="submitBtn">
+            <span class="btn-text">Send Message 🚀</span>
+            <!-- Spinner shown during the fake/real network request -->
+            <span class="spinner" aria-hidden="true"></span>
+          </button>
+
+        </form>
+
+        <div id="successMessage" class="success-message" hidden>
+          <div class="success-icon">✅</div>
+          <h4>Form Submitted Successfully!</h4>
+          <p>Thank you! We'll get back to you within 24 hours.</p>
+          <button type="button" id="resetBtn" class="btn-reset">Send Another Message</button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- ╔══════════════════════════════════════╗
+       ║  4. FOOTER                           ║
+       ╚══════════════════════════════════════╝
+       <footer> — landmark for bottom-of-page info
+  -->
+  <footer class="footer">
+    <div class="footer-grid">
+      <div class="footer-brand">
+  <a href="index.html" class="brand" style="text-decoration:none;">
+    <img src="assets/images/logo.png" alt="She Can Foundation Logo" class="brand-logo" />
+    <strong>She Can Foundation</strong>
+  </a>
+  <p>Building a world where every woman has the opportunity to thrive, lead, and inspire.</p>
+</div>
+
+      <nav aria-label="Footer navigation">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#hero">Home</a></li>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#programs">Programs</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div>
+        <h4>Programs</h4>
+        <ul>
+          <li>Skill Development</li>
+          <li>Leadership Training</li>
+          <li>Mentorship</li>
+          <li>Scholarships</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2025 She Can Foundation. Made with <span>♥</span> for a better tomorrow.</p>
+    </div>
+  </footer>
+
+  <!-- ── Toast notification (pops in top-right on success) ── -->
+  <div class="toast" id="toast" role="status" aria-live="polite">
+    <span class="toast-icon">🎉</span>
+    <div class="toast-body">
+      <strong>Form Submitted Successfully</strong>
+      <span>We'll get back to you within 24 hours!</span>
+    </div>
+    <button class="toast-close" id="toastClose" aria-label="Close">✕</button>
+  </div>
+
+  <!-- Step 3: JavaScript linked here -->
+  <!-- defer = download in background, run after HTML is parsed -->
+  <script src="assets/js/main.js" defer></script>
+
+</body>
+</html>

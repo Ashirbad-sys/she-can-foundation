@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="She Can Foundation — Contact us and make your voice heard." />
+  <title>Contact Us | She Can Foundation</title>
+
+  <!--
+    STEP 1 — HTML Structure Only
+    ════════════════════════════
+    No external CSS or JavaScript yet.
+    We're building the skeleton: every section,
+    tag, and attribute in the right place.
+    Styling comes in Step 2.
+  -->
+</head>
+<body>
+
+  <!-- ╔══════════════════════════════════════╗
+       ║  1. NAVBAR / HEADER                  ║
+       ╚══════════════════════════════════════╝
+       <header>  — landmark for the top of the page
+       <nav>     — marks this as site navigation
+       <ul>/<li> — links are a list, semantically
+  -->
+  <header>
+    <nav>
+      <!-- Brand / Logo -->
+      <a href="index.html" class="brand">
+        🌸 She Can Foundation
+      </a>
+
+      <!-- Navigation links -->
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#programs">Programs</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+
+  <!-- ╔══════════════════════════════════════╗
+       ║  2. HERO SECTION                     ║
+       ╚══════════════════════════════════════╝
+       <section> — a standalone thematic block
+       <h1>      — only ONE h1 per page (main heading)
+  -->
+  <section id="hero">
+    <p>Empowering Women Since 2018</p>
+
+    <h1>We Believe Every Woman<br />Can Change the World</h1>
+
+    <p>
+      She Can Foundation is committed to creating opportunities,
+      amplifying voices, and building a more equitable future
+      for women everywhere.
+    </p>
+
+    <!-- Quick stats — use <dl> (description list): term + detail pairs -->
+    <dl>
+      <div>
+        <dt>Women Empowered</dt>
+        <dd>5,000+</dd>
+      </div>
+      <div>
+        <dt>Programs Run</dt>
+        <dd>120+</dd>
+      </div>
+      <div>
+        <dt>Cities Reached</dt>
+        <dd>32</dd>
+      </div>
+    </dl>
+  </section>
+
+
+  <!-- ╔══════════════════════════════════════╗
+       ║  3. CONTACT SECTION                  ║
+       ╚══════════════════════════════════════╝
+       Two columns side-by-side (styled in Step 2):
+         LEFT  — contact info (address, email, phone)
+         RIGHT — the contact form
+  -->
+  <main id="contact">
+
+    <!-- ── LEFT: Contact Info ── -->
+    <aside>
+      <h2>Get in Touch</h2>
+      <p>
+        Whether you want to volunteer, partner with us, or simply learn more
+        about our work — we'd love to hear from you.
+      </p>
+
+      <!-- Address / contact details -->
+      <address>
+        <p>
+          <strong>Address:</strong><br />
+          12 Empower Lane, Bhubaneswar, Odisha 751001
+        </p>
+        <p>
+          <strong>Email:</strong><br />
+          <a href="mailto:hello@shecanicanfoundation.org">
+            hello@shecanicanfoundation.org
+          </a>
+        </p>
+        <p>
+          <strong>Phone:</strong><br />
+          <a href="tel:+919876543210">+91 98765 43210</a>
+        </p>
+        <p>
+          <strong>Working Hours:</strong><br />
+          Mon – Sat, 9 AM – 6 PM IST
+        </p>
+      </address>
+    </aside>
+
+
+    <!-- ── RIGHT: Contact Form ── -->
+    <section aria-labelledby="formTitle">
+      <h3 id="formTitle">Send Us a Message</h3>
+      <p>We typically respond within 24 hours ✨</p>
+
+      <!--
+        <form>   — wraps all fields
+        novalidate — we'll handle validation ourselves in JS (Step 3)
+        action/method are omitted for now; the backend (Step 4) will
+        provide the URL we POST to.
+      -->
+      <form id="contactForm" novalidate>
+
+        <!-- ── Field 1: Full Name ── -->
+        <div>
+          <!--
+            <label for="fullName"> links the label to the input.
+            Clicking the label focuses the input — important for accessibility.
+          -->
+          <label for="fullName">Full Name *</label>
+          <input
+            type="text"
+            id="fullName"
+            name="full_name"
+            placeholder="e.g. Priya Sharma"
+            autocomplete="name"
+            required
+            aria-required="true"
+            aria-describedby="fullNameError"
+          />
+          <!-- Error message shown by JS in Step 3 -->
+          <span id="fullNameError" role="alert" aria-live="polite"></span>
+        </div>
+
+        <!-- ── Field 2: Email Address ── -->
+        <div>
+          <label for="email">Email Address *</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="e.g. priya@email.com"
+            autocomplete="email"
+            required
+            aria-required="true"
+            aria-describedby="emailError"
+          />
+          <span id="emailError" role="alert" aria-live="polite"></span>
+        </div>
+
+        <!-- ── Field 3: Message ── -->
+        <div>
+          <label for="message">Your Message *</label>
+          <!--
+            <textarea> instead of <input> because the message
+            can be long and multi-line.
+          -->
+          <textarea
+            id="message"
+            name="message"
+            rows="5"
+            placeholder="Tell us how we can help or collaborate…"
+            required
+            aria-required="true"
+            aria-describedby="messageError"
+          ></textarea>
+          <span id="messageError" role="alert" aria-live="polite"></span>
+        </div>
+
+        <!-- ── Submit Button ── -->
+        <button type="submit">
+          Send Message 🚀
+        </button>
+
+      </form>
+
+      <!--
+        Success message — hidden by default.
+        JavaScript (Step 3) will show this after a
+        successful form submission.
+      -->
+      <div id="successMessage" hidden>
+        <p>✅ Form Submitted Successfully!</p>
+        <p>Thank you! We'll get back to you within 24 hours.</p>
+        <button type="button" id="resetBtn">Send Another Message</button>
+      </div>
+
+    </section>
+
+  </main><!-- /#contact -->
+
+
+  <!-- ╔══════════════════════════════════════╗
+       ║  4. FOOTER                           ║
+       ╚══════════════════════════════════════╝
+       <footer> — landmark for bottom-of-page info
+  -->
+  <footer>
+    <div>
+      <!-- Brand blurb -->
+      <div>
+        <strong>🌸 She Can Foundation</strong>
+        <p>
+          Building a world where every woman has the opportunity
+          to thrive, lead, and inspire.
+        </p>
+      </div>
+
+      <!-- Quick links -->
+      <nav aria-label="Footer navigation">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#hero">Home</a></li>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#programs">Programs</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <!-- Programs list -->
+      <div>
+        <h4>Programs</h4>
+        <ul>
+          <li>Skill Development</li>
+          <li>Leadership Training</li>
+          <li>Mentorship</li>
+          <li>Scholarships</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Copyright bar -->
+    <p>
+      &copy; 2025 She Can Foundation. Made with ♥ for a better tomorrow.
+    </p>
+  </footer>
+
+  <!--
+    JavaScript will be linked here in Step 3:
+    <script src="assets/js/main.js" defer></script>
+  -->
+
+</body>
+</html>
