@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Panel | She Can Foundation</title>
+  <link rel="stylesheet" href="assets/css/admin.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- LOGIN SCREEN -->
+  <div id="loginScreen" class="login-screen">
+    <div class="login-card">
+      <img src="assets/images/logo.png" alt="Logo" class="login-logo" />
+      <h2>Admin Login</h2>
+      <p>She Can Foundation</p>
+
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" id="passwordInput" placeholder="Enter admin password" />
+        <span class="field-error" id="loginError"></span>
+      </div>
+
+      <button id="loginBtn">Login</button>
+    </div>
+  </div>
+
+  <!-- ADMIN PANEL (hidden until logged in) -->
+  <div id="adminPanel" hidden>
+
+    <!-- Header -->
+    <header class="admin-header">
+      <div class="admin-brand">
+        <img src="assets/images/logo.png" alt="Logo" class="brand-logo" />
+        <span>She Can Foundation — Admin</span>
+      </div>
+      <div class="header-actions">
+        <a href="index.html" class="btn-back">← Back to Site</a>
+        <button id="logoutBtn" class="btn-logout">Logout</button>
+      </div>
+    </header>
+
+    <!-- Stats -->
+    <div class="admin-body">
+      <div class="stat-cards">
+        <div class="stat-card">
+          <span>📬</span>
+          <div>
+            <strong id="totalCount">0</strong>
+            <p>Total Submissions</p>
+          </div>
+        </div>
+        <div class="stat-card">
+          <span>📅</span>
+          <div>
+            <strong id="todayCount">0</strong>
+            <p>Today's Messages</p>
+          </div>
+        </div>
+        <div class="stat-card">
+          <span>✉️</span>
+          <div>
+            <strong id="latestEmail">—</strong>
+            <p>Latest Sender</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Search + Table -->
+      <div class="table-card">
+        <div class="table-header">
+          <h3>All Submissions</h3>
+          <input type="search" id="searchInput" placeholder="🔍 Search by name or email..." />
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Message</th>
+                <th>Date</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="submissionsBody">
+              <tr>
+                <td colspan="6" class="loading">Loading submissions...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="assets/js/admin.js" defer></script>
+</body>
+</html>
