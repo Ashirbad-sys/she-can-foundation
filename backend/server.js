@@ -1,16 +1,20 @@
 const express       = require("express");
 const cors          = require("cors");
+const path          = require("path");
 const { initDB }    = require("./db/database");
 const contactRouter = require("./routes/contact");
 
 const app  = express();
-const PORT = 3001;
+const PORT = process.env.PORT || 3001;
 
 app.use(cors({
-  origin: ["http://localhost:5500", "http://127.0.0.1:5500", "null"],
+  origin: "*",
   methods: ["GET", "POST", "DELETE"],
 }));
 app.use(express.json());
+
+// Serve frontend files from the ../frontend folder
+app.use(express.static(path.join(__dirname, "../frontend")));
 
 app.use("/api/contact", contactRouter);
 
@@ -18,10 +22,13 @@ app.get("/api/health", (_req, res) =>
   res.json({ status: "ok", timestamp: new Date().toISOString() })
 );
 
-// initDB is async now, so we wait for it before listening
+// For any other route, serve index.html
+app.get("*", (_req, res) => {
+  res.sendFile(path.join(__dirname, "../frontend", "index.html"));
+});
+
 initDB().then(() => {
   app.listen(PORT, () => {
-    console.log(`\n🌸 She Can Foundation API running at http://localhost:${PORT}`);
-    console.log(`📋 View submissions: GET http://localhost:${PORT}/api/contact\n`);
+    console.log(`\n🌸 She Can Foundation running on port ${PORT}`);
   });
 });
