@@ -1,7 +1,7 @@
 // Admin Panel JavaScript — She Can Foundation
 
 const ADMIN_PASSWORD = "shecan2025"; // change this to your preferred password
-const API_BASE = "/api"; // uses relative path since frontend is served from Express
+const API_BASE = "https://she-can-foundation-lqxa.onrender.com/api"; // uses relative path since frontend is served from Express
 
 let allData = [];
 
