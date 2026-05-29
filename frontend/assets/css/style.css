@@ -1,86 +1,69 @@
-/*
-  style.css — She Can Foundation
-  ════════════════════════════════
-  STEP 2: All visual styling.
-  Organised in the same order as the HTML:
-    1. Variables & Reset
-    2. Navbar
-    3. Hero
-    4. Contact Section (Info + Form)
-    5. Footer
-    6. Utilities & Animations
-    7. Responsive (Mobile)
-*/
+/* She Can Foundation — style.css */
 
+/* Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
-/* ══════════════════════════════════════════
-   1. CSS VARIABLES & RESET
-   ══════════════════════════════════════════
-   Variables let us reuse colours/values everywhere.
-   Change --rose once and it updates the whole page.
-*/
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=DM+Sans:wght@400;500;600&display=swap');
-
+/* ── Variables ── */
 :root {
-  /* Colour palette */
-  --rose:        #e8436a;
-  --rose-dark:   #c42f56;
-  --rose-light:  #f2698a;
-  --blush:       #fce8ee;
-  --cream:       #fdf6f0;
-  --sand:        #f5ede4;
-
-  /* Text */
-  --text-dark:   #1a1218;
-  --text-mid:    #5a4352;
-  --text-light:  #9b7d8e;
-
-  /* Surfaces */
-  --white:       #ffffff;
-  --border:      rgba(232, 67, 106, 0.15);
-
-  /* Shadows */
-  --shadow-sm:   0 2px 12px rgba(232, 67, 106, 0.10);
-  --shadow-md:   0 8px 32px rgba(232, 67, 106, 0.15);
-  --shadow-lg:   0 20px 60px rgba(232, 67, 106, 0.20);
-
-  /* Misc */
-  --radius:      16px;
-  --transition:  0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --rose:       #e8436a;
+  --rose-dark:  #c42f56;
+  --blush:      #fce8ee;
+  --cream:      #fdf6f0;
+  --white:      #ffffff;
+  --text-dark:  #1a1218;
+  --text-mid:   #5a4352;
+  --text-light: #9b7d8e;
+  --border:     rgba(232, 67, 106, 0.15);
+  --shadow:     0 4px 20px rgba(0, 0, 0, 0.08);
+  --radius:     12px;
 }
 
-/* Universal box-sizing — padding doesn't add to element width */
-*, *::before, *::after {
+/* ── Reset ── */
+* {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-html {
-  scroll-behavior: smooth; /* smooth jump when clicking anchor links */
-}
+html { scroll-behavior: smooth; }
 
 body {
-  font-family: 'DM Sans', sans-serif;
-  background: var(--cream);
+  font-family: 'Poppins', sans-serif;
   color: var(--text-dark);
   line-height: 1.6;
+  background-image: url('../images/bg.png');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
 }
 
-/* Remove default list bullets */
 ul { list-style: none; }
 
+/* Background overlay */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.85);
+  z-index: 0;
+  pointer-events: none;
+}
 
-/* ══════════════════════════════════════════
-   2. NAVBAR
-   ══════════════════════════════════════════ */
+/* Keep all content above the overlay */
+header, main, footer, .hero, .toast {
+  position: relative;
+  z-index: 1;
+}
+
+/* ── NAVBAR ── */
 header {
-  position: sticky; /* stays at top when scrolling */
+  position: sticky;
   top: 0;
   z-index: 100;
   background: var(--white);
   border-bottom: 1px solid var(--border);
-  box-shadow: var(--shadow-sm);
+  box-shadow: var(--shadow);
 }
 
 .navbar {
@@ -90,30 +73,25 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 2rem;
 }
 
-/* Brand logo */
 .brand {
   display: flex;
   align-items: center;
   gap: 0.6rem;
   text-decoration: none;
-  font-family: 'Playfair Display', serif;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   font-weight: 700;
   color: var(--text-dark);
 }
 
 .brand-logo {
-  width: 42px;
-  height: 42px;
-  border-radius: 10px;
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
   object-fit: cover;
-  flex-shrink: 0;
 }
 
-/* Nav links */
 .nav-links {
   display: flex;
   gap: 2rem;
@@ -124,179 +102,100 @@ header {
   color: var(--text-mid);
   font-size: 0.9rem;
   font-weight: 500;
-  transition: color var(--transition);
+  transition: color 0.3s;
 }
 
-.nav-links a:hover {
-  color: var(--rose);
-}
+.nav-links a:hover { color: var(--rose); }
 
-/* CTA button */
 .nav-cta {
-  padding: 0.55rem 1.25rem;
-  background: linear-gradient(135deg, var(--rose), var(--rose-dark));
+  padding: 0.5rem 1.2rem;
+  background: var(--rose);
   color: var(--white);
   text-decoration: none;
-  border-radius: 10px;
+  border-radius: var(--radius);
   font-size: 0.875rem;
   font-weight: 600;
-  box-shadow: 0 4px 16px rgba(232, 67, 106, 0.35);
-  transition: all var(--transition);
+  transition: background 0.3s;
 }
 
-.nav-cta:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(232, 67, 106, 0.45);
-}
+.nav-cta:hover { background: var(--rose-dark); }
 
-
-/* ══════════════════════════════════════════
-   3. HERO SECTION
-   ══════════════════════════════════════════ */
+/* ── HERO ── */
 .hero {
-  position: relative;
   text-align: center;
-  padding: 6rem 2rem 4.5rem;
-  background: linear-gradient(160deg, var(--blush) 0%, var(--cream) 55%, var(--sand) 100%);
-  overflow: hidden;
+  padding: 5rem 2rem 4rem;
+  background: linear-gradient(160deg, var(--blush), var(--cream));
 }
 
-/* Decorative blurred circles in background */
-.hero::before,
-.hero::after {
-  content: '';
-  position: absolute;
-  border-radius: 50%;
-  pointer-events: none;
-}
-
-.hero::before {
-  width: 500px;
-  height: 500px;
-  top: -150px;
-  right: -80px;
-  background: radial-gradient(circle, rgba(232, 67, 106, 0.12) 0%, transparent 70%);
-}
-
-.hero::after {
-  width: 350px;
-  height: 350px;
-  bottom: -100px;
-  left: -60px;
-  background: radial-gradient(circle, rgba(232, 67, 106, 0.08) 0%, transparent 70%);
-}
-
-/* Small pill badge above the title */
-.hero-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  padding: 0.4rem 1rem;
-  background: rgba(232, 67, 106, 0.1);
-  border: 1px solid rgba(232, 67, 106, 0.25);
-  border-radius: 100px;
-  font-size: 0.78rem;
-  font-weight: 600;
-  color: var(--rose);
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  margin-bottom: 1.5rem;
-  animation: fadeDown 0.6s ease both;
-}
-
-/* Main heading */
-.hero-title {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(2rem, 5vw, 3.6rem); /* clamp: min / preferred / max */
+.hero h1 {
+  font-size: 2.8rem;
   font-weight: 700;
-  line-height: 1.15;
+  line-height: 1.2;
+  margin-bottom: 1rem;
   color: var(--text-dark);
-  max-width: 680px;
-  margin: 0 auto 1.25rem;
-  animation: fadeDown 0.7s ease 0.1s both; /* 0.1s delay — staggers after badge */
 }
 
-.hero-title em {
-  font-style: italic;
-  color: var(--rose);
-}
+.hero h1 span { color: var(--rose); }
 
-/* Subtitle paragraph */
-.hero-subtitle {
-  font-size: 1.05rem;
+.hero p {
+  font-size: 1rem;
   color: var(--text-mid);
-  max-width: 520px;
-  margin: 0 auto 3rem;
-  animation: fadeDown 0.7s ease 0.2s both;
+  max-width: 500px;
+  margin: 0 auto 2.5rem;
 }
 
-/* Stats row */
 .hero-stats {
   display: flex;
   justify-content: center;
-  gap: 3.5rem;
+  gap: 3rem;
   flex-wrap: wrap;
-  animation: fadeDown 0.7s ease 0.3s both;
 }
 
 .stat {
   text-align: center;
 }
 
-.stat-number {
+.stat strong {
   display: block;
-  font-family: 'Playfair Display', serif;
   font-size: 2rem;
   font-weight: 700;
   color: var(--rose);
-  line-height: 1;
 }
 
-.stat-label {
-  font-size: 0.78rem;
+.stat span {
+  font-size: 0.8rem;
   color: var(--text-light);
   text-transform: uppercase;
-  letter-spacing: 0.06em;
-  margin-top: 0.25rem;
+  letter-spacing: 0.05em;
 }
 
-
-/* ══════════════════════════════════════════
-   4. CONTACT SECTION
-   ══════════════════════════════════════════ */
+/* ── CONTACT SECTION ── */
 .contact-section {
   max-width: 1100px;
   margin: 0 auto;
-  padding: 5rem 2rem 6rem;
+  padding: 4rem 2rem 5rem;
   display: grid;
-  /* Two columns: info panel is slightly narrower than the form */
   grid-template-columns: 1fr 1.4fr;
-  gap: 4rem;
+  gap: 3rem;
   align-items: start;
 }
 
-/* ── Info Panel (left column) ── */
+/* Info Panel */
 .info-panel h2 {
-  font-family: 'Playfair Display', serif;
-  font-size: 2rem;
-  color: var(--text-dark);
+  font-size: 1.8rem;
+  font-weight: 700;
   margin-bottom: 0.75rem;
-  line-height: 1.2;
 }
 
-.info-panel h2 span {
-  color: var(--rose); /* "Touch" in pink */
-}
+.info-panel h2 span { color: var(--rose); }
 
 .info-panel > p {
   color: var(--text-mid);
-  line-height: 1.7;
-  margin-bottom: 2.25rem;
+  margin-bottom: 2rem;
+  font-size: 0.95rem;
 }
 
-/* Contact details list */
 .contact-details {
-  font-style: normal; /* <address> is italic by default — reset it */
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
@@ -308,192 +207,248 @@ header {
   gap: 1rem;
 }
 
-/* Emoji icon circle */
-.c-icon {
-  width: 44px;
-  height: 44px;
-  flex-shrink: 0;
-  background: var(--blush);
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.1rem;
-  transition: all var(--transition);
-}
-
-.contact-item:hover .c-icon {
-  background: var(--rose);
-  transform: scale(1.08);
-}
-
-.contact-item div {
-  display: flex;
-  flex-direction: column;
-  gap: 0.15rem;
+.contact-item span {
+  font-size: 1.3rem;
+  margin-top: 0.1rem;
 }
 
 .contact-item strong {
+  display: block;
   font-size: 0.85rem;
   font-weight: 600;
   color: var(--text-dark);
+  margin-bottom: 0.15rem;
 }
 
-.contact-item span,
-.contact-item a {
+.contact-item p {
   font-size: 0.85rem;
   color: var(--text-light);
-  text-decoration: none;
-  transition: color var(--transition);
 }
 
-.contact-item a:hover { color: var(--rose); }
-
-/* ── Form Card (right column) ── */
+/* Form Card */
 .form-card {
   background: var(--white);
-  border-radius: 24px;
+  border-radius: 20px;
   padding: 2.5rem;
-  box-shadow: var(--shadow-md);
+  box-shadow: var(--shadow);
   border: 1px solid var(--border);
-  transition: box-shadow var(--transition);
 }
 
-.form-card:hover {
-  box-shadow: var(--shadow-lg);
+.form-card h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
 }
 
-.form-header {
-  margin-bottom: 2rem;
-}
-
-.form-header h3 {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.6rem;
-  color: var(--text-dark);
-  margin-bottom: 0.3rem;
-}
-
-.form-header p {
+.form-card > p {
   font-size: 0.875rem;
   color: var(--text-light);
+  margin-bottom: 1.75rem;
 }
 
-/* Each label + input pair */
 .form-group {
-  margin-bottom: 1.4rem;
+  margin-bottom: 1.25rem;
 }
 
 .form-group label {
   display: block;
-  font-size: 0.82rem;
+  font-size: 0.85rem;
   font-weight: 600;
   color: var(--text-mid);
-  margin-bottom: 0.5rem;
-  text-transform: uppercase;
-  letter-spacing: 0.03em;
+  margin-bottom: 0.4rem;
 }
 
-.required { color: var(--rose); }
-
-/* Inputs and textarea share the same base style */
 .form-group input,
 .form-group textarea {
   width: 100%;
-  padding: 0.875rem 1rem;
+  padding: 0.8rem 1rem;
   border: 1.5px solid var(--border);
-  border-radius: 12px;
+  border-radius: var(--radius);
   background: var(--cream);
   color: var(--text-dark);
-  font-family: 'DM Sans', sans-serif;
-  font-size: 0.95rem;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.9rem;
   outline: none;
-  transition: all var(--transition);
+  transition: border-color 0.3s, box-shadow 0.3s;
 }
 
 .form-group textarea {
-  resize: vertical; /* user can drag to resize height only */
+  resize: vertical;
   min-height: 130px;
-  line-height: 1.6;
 }
 
-.form-group input::placeholder,
-.form-group textarea::placeholder {
-  color: var(--text-light);
-}
-
-/* Focus ring — shows which field is active */
 .form-group input:focus,
 .form-group textarea:focus {
-  border-color: var(--rose-light);
-  box-shadow: 0 0 0 4px rgba(232, 67, 106, 0.1);
+  border-color: var(--rose);
+  box-shadow: 0 0 0 3px rgba(232, 67, 106, 0.1);
   background: var(--white);
 }
 
-/* Error state — added by JS in Step 3 */
 .form-group input.error,
 .form-group textarea.error {
   border-color: #e74c3c;
-  box-shadow: 0 0 0 4px rgba(231, 76, 60, 0.1);
 }
 
-/* Error message text — hidden until JS shows it */
 .field-error {
   display: none;
   font-size: 0.8rem;
   color: #e74c3c;
-  font-weight: 500;
-  margin-top: 0.4rem;
+  margin-top: 0.3rem;
 }
 
-/* JS will add class="visible" to show it */
-.field-error.visible {
-  display: block;
-  animation: shake 0.3s ease;
-}
+.field-error.visible { display: block; }
 
-/* Submit button */
-.btn-submit {
+/* Submit Button */
+#submitBtn {
   width: 100%;
-  padding: 1rem;
-  background: linear-gradient(135deg, var(--rose), var(--rose-dark));
+  padding: 0.9rem;
+  background: var(--rose);
   color: var(--white);
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 1rem;
   font-weight: 600;
   border: none;
-  border-radius: 12px;
+  border-radius: var(--radius);
   cursor: pointer;
-  box-shadow: 0 6px 20px rgba(232, 67, 106, 0.35);
-  transition: all var(--transition);
+  transition: background 0.3s, transform 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
 }
 
-.btn-submit:hover {
+#submitBtn:hover {
+  background: var(--rose-dark);
   transform: translateY(-2px);
-  box-shadow: 0 10px 28px rgba(232, 67, 106, 0.45);
 }
 
-.btn-submit:active {
-  transform: translateY(0);
+#submitBtn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
 }
 
-/* ── Loading state ── */
-/* When JS adds class="loading", hide text, show spinner */
-.btn-submit .spinner {
+/* Spinner */
+.spinner {
   display: none;
-  width: 18px;
-  height: 18px;
-  border: 2.5px solid rgba(255, 255, 255, 0.35);
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255,255,255,0.4);
   border-top-color: #fff;
   border-radius: 50%;
   animation: spin 0.7s linear infinite;
 }
 
-.btn-submit.loading .btn-text { display: none; }
-.btn-submit.loading .spinner  { display: inline-block; }
-.btn-submit:disabled          { opacity: 0.75; cursor: not-allowed; transform: none; }
+#submitBtn.loading .btn-text { display: none; }
+#submitBtn.loading .spinner  { display: inline-block; }
 
-/* ── Toast notification ── */
+/* Success Message */
+#successMessage {
+  text-align: center;
+  padding: 2rem 1rem;
+}
+
+.success-icon { font-size: 3rem; margin-bottom: 1rem; }
+
+#successMessage h4 {
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
+}
+
+#successMessage p {
+  color: var(--text-mid);
+  font-size: 0.9rem;
+  margin-bottom: 1.25rem;
+}
+
+#resetBtn {
+  padding: 0.65rem 1.5rem;
+  border: 1.5px solid var(--rose);
+  border-radius: var(--radius);
+  background: transparent;
+  color: var(--rose);
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+#resetBtn:hover {
+  background: var(--rose);
+  color: var(--white);
+}
+
+/* ── FOOTER ── */
+footer {
+  background: var(--white);
+  border-top: 1px solid var(--border);
+  padding: 3rem 2rem 1.5rem;
+}
+
+.footer-grid {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr;
+  gap: 2.5rem;
+  margin-bottom: 2rem;
+}
+
+.footer-brand img {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  object-fit: cover;
+  margin-bottom: 0.5rem;
+}
+
+.footer-brand strong {
+  display: block;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.footer-brand p {
+  font-size: 0.85rem;
+  color: var(--text-light);
+  line-height: 1.6;
+}
+
+footer h4 {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-dark);
+  margin-bottom: 1rem;
+}
+
+footer ul li {
+  margin-bottom: 0.5rem;
+  font-size: 0.875rem;
+  color: var(--text-light);
+}
+
+footer ul a {
+  text-decoration: none;
+  color: var(--text-light);
+  transition: color 0.3s;
+}
+
+footer ul a:hover { color: var(--rose); }
+
+.footer-bottom {
+  max-width: 1100px;
+  margin: 0 auto;
+  border-top: 1px solid var(--border);
+  padding-top: 1.25rem;
+  font-size: 0.8rem;
+  color: var(--text-light);
+  text-align: center;
+}
+
+/* ── TOAST ── */
 .toast {
   position: fixed;
   top: 1.5rem;
@@ -501,206 +456,49 @@ header {
   z-index: 999;
   display: flex;
   align-items: center;
-  gap: 0.85rem;
+  gap: 0.75rem;
   padding: 1rem 1.25rem;
   background: var(--white);
-  border: 1.5px solid rgba(39, 174, 96, 0.3);
-  border-radius: 16px;
-  box-shadow: var(--shadow-lg);
-  max-width: 320px;
-  /* starts off-screen to the right */
+  border: 1px solid rgba(39, 174, 96, 0.3);
+  border-radius: 14px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+  max-width: 300px;
   transform: translateX(120%);
-  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transition: transform 0.4s ease;
 }
 
-/* JS adds .show to slide it in */
 .toast.show { transform: translateX(0); }
 
-.toast-icon { font-size: 1.5rem; }
-
-.toast-body {
-  display: flex;
-  flex-direction: column;
-  gap: 0.15rem;
-}
-
-.toast-body strong {
-  font-size: 0.88rem;
-  font-weight: 600;
+.toast strong {
+  display: block;
+  font-size: 0.875rem;
   color: var(--text-dark);
 }
 
-.toast-body span {
+.toast p {
   font-size: 0.78rem;
   color: var(--text-light);
 }
 
-.toast-close {
+#toastClose {
   margin-left: auto;
   background: none;
   border: none;
   cursor: pointer;
   color: var(--text-light);
   font-size: 1rem;
-  line-height: 1;
-  transition: color var(--transition);
 }
 
-.toast-close:hover { color: var(--text-dark); }
-
-/* Success message (hidden until JS shows it) */
-.success-message {
-  text-align: center;
-  padding: 2rem 1rem;
-  animation: scaleIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
-}
-
-.success-icon {
-  font-size: 3.5rem;
-  margin-bottom: 1rem;
-}
-
-.success-message h4 {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.5rem;
-  color: var(--text-dark);
-  margin-bottom: 0.5rem;
-}
-
-.success-message p {
-  color: var(--text-mid);
-  font-size: 0.9rem;
-  margin-bottom: 1.5rem;
-}
-
-.btn-reset {
-  padding: 0.7rem 1.75rem;
-  border: 1.5px solid var(--rose);
-  border-radius: 10px;
-  background: transparent;
-  color: var(--rose);
-  font-family: 'DM Sans', sans-serif;
-  font-size: 0.9rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all var(--transition);
-}
-
-.btn-reset:hover {
-  background: var(--rose);
-  color: var(--white);
-}
-
-
-/* ══════════════════════════════════════════
-   5. FOOTER
-   ══════════════════════════════════════════ */
-.footer {
-  background: var(--white);
-  border-top: 1px solid var(--border);
-  padding: 3.5rem 2rem 1.75rem;
-}
-
-.footer-grid {
-  max-width: 1100px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1.6fr 1fr 1fr;
-  gap: 3rem;
-  margin-bottom: 2.5rem;
-}
-
-.footer-brand strong {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.1rem;
-  color: var(--text-dark);
-  display: block;
-  margin-bottom: 0.75rem;
-}
-
-.footer-brand p {
-  font-size: 0.875rem;
-  color: var(--text-light);
-  line-height: 1.7;
-  max-width: 280px;
-}
-
-.footer h4 {
-  font-size: 0.78rem;
-  font-weight: 700;
-  color: var(--text-dark);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  margin-bottom: 1rem;
-}
-
-.footer ul li {
-  margin-bottom: 0.6rem;
-}
-
-.footer ul a,
-.footer ul li {
-  font-size: 0.875rem;
-  color: var(--text-light);
-  text-decoration: none;
-  transition: color var(--transition);
-}
-
-.footer ul a:hover { color: var(--rose); }
-
-.footer-bottom {
-  max-width: 1100px;
-  margin: 0 auto;
-  border-top: 1px solid var(--border);
-  padding-top: 1.5rem;
-  font-size: 0.8rem;
-  color: var(--text-light);
-}
-
-.footer-bottom span { color: var(--rose); }
-
-
-/* ══════════════════════════════════════════
-   6. ANIMATIONS
-   ══════════════════════════════════════════ */
-
-/* Slides down from above + fades in */
-@keyframes fadeDown {
-  from { opacity: 0; transform: translateY(-18px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-/* Wobbles left-right (used on error messages) */
-@keyframes shake {
-  0%, 100% { transform: translateX(0); }
-  25%       { transform: translateX(-6px); }
-  75%       { transform: translateX(6px); }
-}
-
-/* Pops in from small (used on success message) */
-@keyframes scaleIn {
-  from { opacity: 0; transform: scale(0.85); }
-  to   { opacity: 1; transform: scale(1); }
-}
-
+/* ── ANIMATIONS ── */
 @keyframes spin {
   to { transform: rotate(360deg); }
 }
 
-
-/* ══════════════════════════════════════════
-   7. RESPONSIVE — MOBILE
-   ══════════════════════════════════════════
-   @media queries apply styles only when the
-   screen width matches the condition.
-*/
-
-/* Tablet (~900px and below) */
+/* ── RESPONSIVE ── */
 @media (max-width: 900px) {
   .contact-section {
-    grid-template-columns: 1fr; /* stack into single column */
-    gap: 2.5rem;
-    padding: 3.5rem 1.5rem 4rem;
+    grid-template-columns: 1fr;
+    padding: 3rem 1.5rem;
   }
 
   .footer-grid {
@@ -708,19 +506,15 @@ header {
   }
 
   .footer-brand {
-    grid-column: 1 / -1; /* span full width */
+    grid-column: 1 / -1;
   }
 }
 
-/* Mobile (~640px and below) */
 @media (max-width: 640px) {
   .navbar { padding: 1rem 1.25rem; }
-  .nav-links { display: none; } /* hidden on mobile; hamburger added in Step 3 */
-
-  .hero { padding: 4.5rem 1.25rem 3rem; }
-  .hero-stats { gap: 2rem; }
-
-  .form-card { padding: 1.75rem 1.25rem; }
-
+  .nav-links { display: none; }
+  .hero h1 { font-size: 2rem; }
+  .hero-stats { gap: 1.5rem; }
+  .form-card { padding: 1.5rem 1rem; }
   .footer-grid { grid-template-columns: 1fr; }
 }
